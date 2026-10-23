@@ -74,3 +74,10 @@ node --test
 
 Tests use only `node:test` and `node:assert/strict` and are fully deterministic (a
 seeded LCG, no wall-clock time, no sleeps).
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
